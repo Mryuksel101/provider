@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod/screens/addTaskScreen.dart';
+
+import '../widgets/cListView.dart';
+
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
@@ -9,9 +13,20 @@ class TaskScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         onPressed:() {
-          
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            builder: (context)=>SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: AddTaskScreen()
+              ),
+            ),
+          );
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
       ),
@@ -23,7 +38,7 @@ class TaskScreen extends StatelessWidget {
             margin: EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 CircleAvatar(
                   foregroundColor: Colors.lightBlue,
                   backgroundColor: Colors.white,
@@ -51,42 +66,19 @@ class TaskScreen extends StatelessWidget {
                   ),
                 )
               ],
-
-
             ),
           ),
 
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                children: [
-                  ListTile(
-                      title: Text(
-                        'Buy milk',
-                      ),
-                      trailing: Icon(
-                        Icons.check_box_outline_blank
-                      ),
-                  ),
-
-                  ListTile(
-                    title: Text(
-                      'Buy eggs',
-                    ),
-                    trailing: Icon(
-                      Icons.check_box_outline_blank
-                    ),
-                  )
-                ],
-              ),
+              child: CustomListView(),
               
             ),
           )
@@ -95,3 +87,4 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
+
