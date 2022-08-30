@@ -1,9 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:riverpod/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+  String? metin;
+  dynamic fonksiyonVer;
+  List <Task> diziVer;
+  AddTaskScreen({required this.fonksiyonVer, required this.diziVer});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +44,9 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               textAlign: TextAlign.center,
               autofocus: true,
+              onChanged: (change){
+                metin = change;
+              },
             ),
 
             SizedBox(
@@ -52,7 +59,8 @@ class AddTaskScreen extends StatelessWidget {
                 
               ),
               onPressed: () {
-                
+                diziVer.add(Task(name: metin!));
+                fonksiyonVer();
               },
               child: Text(
                 'Add',

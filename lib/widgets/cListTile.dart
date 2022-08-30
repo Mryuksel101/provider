@@ -16,10 +16,7 @@ class CustomListTile extends StatelessWidget {
             decoration: tamamlandiMi? TextDecoration.lineThrough : null,
           ),
         ),
-        trailing: Checkbox(
-          onChanged: fonksiyonVer,
-          value: tamamlandiMi,
-        )
+        
     );
   }
   

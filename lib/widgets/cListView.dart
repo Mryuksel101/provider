@@ -3,41 +3,35 @@ import 'package:riverpod/models/task.dart';
 
 import 'cListTile.dart';
 
-class CustomListView extends StatefulWidget {
-  const CustomListView({
-    Key? key,
-  }) : super(key: key);
+class CustomListView extends StatelessWidget {
 
-  @override
-  State<CustomListView> createState() => _CustomListViewState();
-}
-
-class _CustomListViewState extends State<CustomListView> {
-  List <Task> task = [
-    Task(name: "Flutter projeni tamamla"),
-    Task(name: "Date'e cık"),
-    Task(name: "Youtube videosu cek")
-  ];
-
-  
-  
+  List<Task> diziVer;
+  dynamic fonksiyonVer;
+  CustomListView({required this.diziVer, required this.fonksiyonVer});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: task.length,
+      itemCount: diziVer.length,
       padding: EdgeInsets.symmetric(horizontal: 20),
       itemBuilder: (context,index){
-        return CustomListTile(
-          gorevVer: task[index].name,
-          tamamlandiMi: task[index].isDone,
-          fonksiyonVer: (bool? value){
-            setState(() {
-              task[index].isDone = value!;
-            });
-          }
+        return ListTile(
+          title: Text(
+            diziVer[index].name,
+            style: TextStyle(
+              decoration: diziVer[index].isDone? TextDecoration.lineThrough : null,
+            ),
+          ),
+          trailing: Checkbox(
+            onChanged: (value) {
+              diziVer[index].isDone = value!;
+              fonksiyonVer();
+            },
+            value: diziVer[index].isDone
+          )
         );
       },
     );
   }
 }
+
 
