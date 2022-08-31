@@ -1,14 +1,13 @@
 import 'dart:ui';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod/main.dart';
 import 'package:riverpod/models/task.dart';
+import 'package:riverpod/screens/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  String? metin;
-  dynamic fonksiyonVer;
-  List <Task> diziVer;
-  AddTaskScreen({required this.fonksiyonVer, required this.diziVer});
-
+  AddTaskScreen();
+  String metin="";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +58,20 @@ class AddTaskScreen extends StatelessWidget {
                 
               ),
               onPressed: () {
-                diziVer.add(Task(name: metin!));
-                fonksiyonVer();
+                debugPrint("addTaskScreen'in onpress'ine basildi");
+                Provider.of<TaskProvider>(context,listen: false).diziyeEkle(metin);
+                // Provider.of<TaskProvider>(context,listen: false) listen "false" olacak çünkü
+                /*
+                  On Event Handlers like onPressed, OnTap, onLongPressed etc. we must use
+                  Provider.of<T>(context,listen:false)
+                  reason being that they will not listen for any update changes, instead are responsible for making changes.
+
+                  whereas widgets like Text etc. are responsible for displaying...hence need to be updated on every change made....therefore use
+
+                  Link: https://stackoverflow.com/questions/59590673/flutter-app-crash-after-converting-provider-3-to-4
+                */
+
+                Navigator.pop(context); // görevi ekledğimizde geri dönmek için
               },
               child: Text(
                 'Add',

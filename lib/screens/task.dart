@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:riverpod/main.dart';
 import 'package:riverpod/models/task.dart';
 import 'package:riverpod/screens/addTaskScreen.dart';
 
 import '../widgets/cListView.dart';
 
 
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
 
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
 
-class _TaskScreenState extends State<TaskScreen> {
+
+
   
-  List <Task> task = [
-    Task(name: "Flutter projeni tamamla"),
-    Task(name: "Date'e cık"),
-    Task(name: "Youtube videosu cek")
-  ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +29,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
-                child: AddTaskScreen(
-                  diziVer: task,
-                  fonksiyonVer: (){
-                    setState(() {
-                      
-                    });
-                    Navigator.pop(context);
-                  },
-                )
+                child: AddTaskScreen()
               ),
             ),
           );
@@ -77,18 +65,22 @@ class _TaskScreenState extends State<TaskScreen> {
                     fontSize: 50,
                   ),
                 ),
-
-                Text(
-                    "${task.length} task",
-                    style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
+    
+                Consumer<TaskProvider>(
+                  builder: (context, value, child) {
+                    return Text(
+                      "${value.diziUzunkugu()} task",
+                      style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      ),
+                    );
+                  }, 
                 )
               ],
             ),
           ),
-
+    
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
@@ -98,14 +90,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: CustomListView(
-                diziVer: task,
-                fonksiyonVer: (){
-                  setState(() {
-                    
-                  });
-                }
-              ),
+              child: CustomListView(),
               
             ),
           )
