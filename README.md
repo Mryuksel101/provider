@@ -1,16 +1,14 @@
-# riverpod
+# proiver
 
-A new Flutter project.
+Flutter'daki state management'i anlmamak için görev yapma uygulaması geliştirdim.
+Github hesabımdaki main branch'ında proivder paketini kullanmadan state management yaptım. 
 
-## Getting Started
+Provider branch'ında ise proiver paketini kullandım.
 
-This project is a starting point for a Flutter application.
+![WhatsApp Image 2022-09-01 at 12 12 39](https://user-images.githubusercontent.com/99680265/187879245-0d6be38c-22a8-4cf0-8d52-d0d0dd658005.jpeg)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![WhatsApp Image 2022-09-01 at 12 12 40 (1)](https://user-images.githubusercontent.com/99680265/187879316-ff3b9d3f-2693-4cf0-ade9-382a25c0b2c7.jpeg)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+![WhatsApp Image 2022-09-01 at 12 12 40](https://user-images.githubusercontent.com/99680265/187879361-8d749cc4-6f2b-4cf0-82a1-37886d4b18d9.jpeg)
